@@ -4,13 +4,13 @@ import Footer from "../components/shared/Footer";
 
 const MainLayout = () => {
     return (
-        <main>
+        <>
             <Navbar />
 
             <Outlet></Outlet>
 
             <Footer />
-        </main>
+        </>
     );
 };
 
