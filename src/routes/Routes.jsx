@@ -56,20 +56,21 @@ const router = createBrowserRouter([
         element: <PrivateRoute><DashboardHome /></PrivateRoute>,
       },
       {
-        path: "/dashboard/manage",
+        path: "manage",
         element: <PrivateRoute><ManageEvents /></PrivateRoute>,
       },
       {
-        path: "/dashboard/addEvent",
+        path: "addEvent",
         element: <PrivateRoute><AddEvent /></PrivateRoute>,
       },
       {
-        path: "/dashboard/profile",
+        path: "profile",
         element: <PrivateRoute><Profile /></PrivateRoute>,
       },
       {
-        path: "/dashboard/edit/:id",
+        path: "edit/:id",
         element: <PrivateRoute><EditEvent /></PrivateRoute>,
+        loader: ({ params }) => fetch(`http://localhost:5000/event/${params.id}`)
       }
     ]
   }
