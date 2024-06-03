@@ -35,11 +35,13 @@ const router = createBrowserRouter([
       },
       {
         path: "/events",
-        element: <AllEvents />
+        element: <AllEvents />,
+        loader: () => fetch('http://localhost:5000/event'),
       },
       {
         path: "/event/:id",
-        element: <EventDetails />
+        element: <EventDetails />,
+        loader: ({ params }) => fetch(`http://localhost:5000/event/${params.id}`)
       },
       {
         path: "/about",
