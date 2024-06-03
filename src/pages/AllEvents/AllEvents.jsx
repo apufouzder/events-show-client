@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const events = [
     {
         name: "Global Health Summit 2024",
@@ -77,13 +79,15 @@ const AllEvents = () => {
            
             <div className="flex flex-col gap-4">
                 {events.map(event => <>
-                    <div key={event.name} className="rounded-lg shadow-lg p-4 flex items-center gap-14">
+                    <div key={event.name} className="rounded-lg shadow-lg p-4 flex flex-col sm:flex-row items-center gap-14">
                         <div className="w-[500px]">
-                            <img className="w-full" src={event.photo} alt="Photo" />
+                            <Link to={`/event/${event.id}`}><img className="w-full" src={event.photo} alt="Photo" /></Link>
                         </div>
                         <div className="flex flex-col justify-center">
                             <p className="text-xl text-purple-500 font-semibold font-mono">{event.date}</p>
-                            <h1 className="text-4xl font-semibold my-4">{event.name}</h1>
+                            <Link to={`/event/${event.id}`}>
+                                <h1 className="text-4xl font-semibold my-4 hover:text-purple-950">{event.name}</h1>
+                            </Link>
                             <p className="text-gray-500 text-xl font-medium mb-2">{event.contact}</p>
                             <p className="text-gray-500 text-xl font-medium">{event.location}</p>
                         </div>

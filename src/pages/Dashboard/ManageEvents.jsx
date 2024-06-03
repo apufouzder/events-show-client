@@ -1,3 +1,5 @@
+
+import { Link } from "react-router-dom";
 const events = [
     {
         name: "Global Health Summit 2024",
@@ -70,7 +72,15 @@ const events = [
         photo: "https://eventics.temptics.com/assets/img/event-details-img.jpg"
     },
 ]
+
 const ManageEvents = () => {
+//     const [events, setEvents] = useState([])
+// console.log(events);
+//     useEffect(() => {
+//         fetch('data.json')
+//             .then(res => res.json())
+//             .then(data => setEvents(data))
+//     }, [])
     return (
         <>
             <div className="overflow-x-auto w-full shadow-lg border">
@@ -79,12 +89,12 @@ const ManageEvents = () => {
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Name</th>
-                            <th>Speaker</th>
-                            <th>Location</th>
-                            <th>Date</th>
-                            <th>Contact</th>
-                            <th>Fee</th>
+                            <th className="font-semibold text-lg">Name</th>
+                            <th className="font-semibold text-lg">Speaker</th>
+                            <th className="font-semibold text-lg">Location</th>
+                            <th className="font-semibold text-lg">Date</th>
+                            <th className="font-semibold text-lg">Contact</th>
+                            <th className="font-semibold text-lg">Fee</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -108,8 +118,10 @@ const ManageEvents = () => {
                                 <td>{event.date}</td>
                                 <td>{event.contact}</td>
                                 <td>{event.fee}</td>
-                                <th>
-                                    <button className="btn btn-ghost btn-xs">details</button>
+                                <th className="flex gap-1">
+                                    <Link to={`/event/${event.id}`}><button className="btn btn-accent btn-xs">details</button></Link>
+                                    <Link to={`/dashboard/edit/${event.id}`}><button className="btn btn-info btn-xs">edit</button></Link>
+                                    <button className="btn btn-warning btn-xs">Delete</button>
                                 </th>
                             </tr>
                         </>)}

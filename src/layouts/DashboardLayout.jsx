@@ -21,12 +21,15 @@ const DashboardLayout = () => {
                 ></label>
                 <ul className="menu p-4 w-60 min-h-screen bg-base-200 text-base-content flex flex-col justify-between">
                     <div>
-                        <Link to={"/"}><button className="btn btn-secondary mb-5">Home</button></Link>
+                        <Link to={"/"}><a className="btn btn-ghost flex justify-start gap-0 text-2xl">Event<span className="text-pink-700 text-base">show</span></a></Link>
                         <li>
                             <Link to={"/dashboard/manage"}>Manage Events</Link>
                         </li>
                         <li>
                             <Link to={"/dashboard/addEvent"}>Add Event</Link>
+                        </li>
+                        <li>
+                            <Link to={"/dashboard/profile"}>User Profile</Link>
                         </li>
                     </div>
                 </ul>

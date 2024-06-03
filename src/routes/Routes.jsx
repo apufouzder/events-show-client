@@ -10,6 +10,10 @@ import DashboardHome from "../pages/Dashboard/DashboardHome";
 import PrivateRoute from "../routes/PrivateRoute";
 import ManageEvents from "../pages/Dashboard/ManageEvents";
 import AddEvent from "../pages/Dashboard/AddEvent";
+import Profile from "../pages/User/Profile";
+import About from "../pages/About/About";
+import EditEvent from "../pages/Dashboard/EditEvent";
+import EventDetails from "../components/Home/EventDetails";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +36,14 @@ const router = createBrowserRouter([
       {
         path: "/events",
         element: <AllEvents />
+      },
+      {
+        path: "/event/:id",
+        element: <EventDetails />
+      },
+      {
+        path: "/about",
+        element: <About />
       }
     ],
   },
@@ -41,15 +53,23 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <DashboardHome />
+        element: <PrivateRoute><DashboardHome /></PrivateRoute>,
       },
       {
         path: "/dashboard/manage",
-        element: <ManageEvents />,
+        element: <PrivateRoute><ManageEvents /></PrivateRoute>,
       },
       {
         path: "/dashboard/addEvent",
-        element: <AddEvent />
+        element: <PrivateRoute><AddEvent /></PrivateRoute>,
+      },
+      {
+        path: "/dashboard/profile",
+        element: <PrivateRoute><Profile /></PrivateRoute>,
+      },
+      {
+        path: "/dashboard/edit/:id",
+        element: <PrivateRoute><EditEvent /></PrivateRoute>,
       }
     ]
   }
