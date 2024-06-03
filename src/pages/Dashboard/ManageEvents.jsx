@@ -1,15 +1,54 @@
 
+
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ManageEvents = () => {
-    const [events, setEvents] = useState([])
-  
+    const [events, setEvents] = useState([]);
+
+    const handleDelete = async (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    await fetch(`http://localhost:5000/event/${id}`, {
+                        method: 'DELETE',
+                    })
+                        .then(res => res.json())
+                        .then(() => {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+
+                            setEvents(events.filter(item => item?._id !== id));
+                        })
+
+                } catch (error) {
+                    Swal.fire({
+                        title: "Error!",
+                        text: "There was a problem deleting your file.",
+                        icon: "error"
+                    });
+                }
+            }
+        });
+    }
     useEffect(() => {
         fetch('http://localhost:5000/event')
             .then(res => res.json())
             .then(data => setEvents(data))
     }, [])
+
     return (
         <>
             <div className="overflow-x-auto w-full shadow-lg border">
@@ -50,7 +89,7 @@ const ManageEvents = () => {
                                 <th className="flex gap-1">
                                     <Link to={`/event/${event._id}`}><button className="btn btn-accent btn-xs">details</button></Link>
                                     <Link to={`/dashboard/edit/${event._id}`}><button className="btn btn-info btn-xs">edit</button></Link>
-                                    <button className="btn btn-warning btn-xs">Delete</button>
+                                    <button onClick={() => handleDelete(event._id)} className="btn btn-warning btn-xs">Delete</button>
                                 </th>
                             </tr>
                         </>)}
