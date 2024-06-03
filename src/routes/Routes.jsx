@@ -8,6 +8,8 @@ import AllEvents from "../pages/AllEvents/AllEvents";
 import DashboardLayout from "../layouts/DashboardLayout";
 import DashboardHome from "../pages/Dashboard/DashboardHome";
 import PrivateRoute from "../routes/PrivateRoute";
+import ManageEvents from "../pages/Dashboard/ManageEvents";
+import AddEvent from "../pages/Dashboard/AddEvent";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +43,14 @@ const router = createBrowserRouter([
         index: true,
         element: <DashboardHome />
       },
+      {
+        path: "/dashboard/manage",
+        element: <ManageEvents />,
+      },
+      {
+        path: "/dashboard/addEvent",
+        element: <AddEvent />
+      }
     ]
   }
 ]);

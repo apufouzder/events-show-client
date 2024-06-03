@@ -23,10 +23,10 @@ const DashboardLayout = () => {
                     <div>
                         <Link to={"/"}><button className="btn btn-secondary mb-5">Home</button></Link>
                         <li>
-                            <Link to={"/dashboard/manage"}>Manage Products</Link>
+                            <Link to={"/dashboard/manage"}>Manage Events</Link>
                         </li>
                         <li>
-                            <Link to={"/dashboard/addProduct"}>Add Product</Link>
+                            <Link to={"/dashboard/addEvent"}>Add Event</Link>
                         </li>
                     </div>
                 </ul>
