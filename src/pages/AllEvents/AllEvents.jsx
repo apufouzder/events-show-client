@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 const events = [
     {
         name: "Global Health Summit 2024",
@@ -73,15 +71,12 @@ const events = [
     },
 ]
 
-const EventSection = () => {
+const AllEvents = () => {
     return (
         <div className="container mx-auto py-14">
-            <div className="mb-14 text-center">
-                <p className="text-base font-semibold text-purple-600 font-mono mb-3">__Events__</p>
-                <h1 className="text-5xl font-semibold">Here All Events</h1>
-            </div>
+           
             <div className="flex flex-col gap-4">
-                {events.slice(0, 4).map(event => <>
+                {events.map(event => <>
                     <div key={event.name} className="rounded-lg shadow-lg p-4 flex items-center gap-14">
                         <div className="w-[500px]">
                             <img className="w-full" src={event.photo} alt="Photo" />
@@ -92,16 +87,13 @@ const EventSection = () => {
                             <p className="text-gray-500 text-xl font-medium mb-2">{event.contact}</p>
                             <p className="text-gray-500 text-xl font-medium">{event.location}</p>
                         </div>
-                        <p className="text-4xl font-bold text-purple-500">{ event.fee}</p>
+                        <p className="text-4xl font-bold text-purple-500">{event.fee}</p>
                     </div>
                 </>
                 )}
-            </div>
-            <div className="text-center mt-8">
-                <Link to={"/events"}><button className="btn btn-secondary text-lg">See More</button></Link>
             </div>
         </div>
     );
 };
 
-export default EventSection;
+export default AllEvents;
