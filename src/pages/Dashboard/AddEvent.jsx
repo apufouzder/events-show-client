@@ -1,3 +1,5 @@
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const AddEvent = () => {
 
@@ -13,10 +15,20 @@ const AddEvent = () => {
         const contact = form.contact.value;
         const speaker = form.speaker.value;
         const description = form.description.value;
-        const image = form.image.value;
-        const pData = {name, description, image, fee, type, location, date, contact, speaker}
+        const photo = form.photo.value;
+        const data = {name, description, photo, fee, type, location, date, contact, speaker}
 
-        console.log(pData);
+        const res = await axios.post('http://localhost:5000/event', data)
+        if (res.status === 200) {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Event Added",
+                showConfirmButton: false,
+                timer: 1500
+              });
+            form.reset();
+        }
     }
 
     return (
@@ -77,7 +89,7 @@ const AddEvent = () => {
                         <label className="label">
                             <span className="label-text">Image</span>
                         </label>
-                        <input type="text" name="image" placeholder="image url" className="input input-bordered" required />
+                        <input type="text" name="photo" placeholder="image url" className="input input-bordered" required />
                     </div>
                     <div className="form-control mt-6">
                         <button type="submit" className="btn btn-primary">Submit</button>
