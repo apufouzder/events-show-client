@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-undef */
-import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile, updateEmail } from "firebase/auth";
 import { app } from "../firebase/firebase.config";
 import { createContext } from "react";
 import { useState } from "react";
@@ -14,6 +14,16 @@ const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const googleProvider = new GoogleAuthProvider();
 
+    const updateNameAndPhoto = (user, displayName, photoUrl) => {
+        return updateProfile(user, {
+            displayName: displayName,
+            photoURL: photoUrl
+        })
+    }
+
+    const userEmailUpdate = (email) => {
+        return updateEmail(user, email)
+    }
 
     const googleLogin = () => {
         return signInWithPopup(auth, googleProvider);
@@ -47,7 +57,7 @@ const AuthProvider = ({ children }) => {
         };
     }, []);
 
-    const authInfo = { user, googleLogin, loading, logOut, createUser, signInUser };
+    const authInfo = { user, googleLogin, loading, logOut, createUser, signInUser, updateNameAndPhoto, userEmailUpdate };
     return (
         <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
     );

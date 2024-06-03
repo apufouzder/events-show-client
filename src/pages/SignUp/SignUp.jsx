@@ -1,8 +1,10 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
-    const { createUser, user} = useAuth();
+    const { createUser, updateNameAndPhoto } = useAuth();
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -13,14 +15,37 @@ const SignUp = () => {
     const handleCreateUser = (e) => {
         e.preventDefault();
 
-        const from = e.target
-        const email = from.email.value;
-        const password = from.password.value;
-        console.log(email, password);
-        createUser(email, password);
+        const form = e.target
+        const email = form.email.value;
+        const name = form.name.value;
+        const password = form.password.value;
+        const photo = form.photo.value;
+        const data = { displayName: name, email, photoUrl: photo }
+
+        createUser(email, password)
+            .then(result => {
+                // console.log("user: ", result.user);
+                updateNameAndPhoto(result.user, name, photo)
+                    .then(async () => {
+                        const res = await axios.post('http://localhost:5000/user', data)
+                        if (res.status === 200) { 
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "Create Successfully!",
+                                showConfirmButton: false,
+                                timer: 1500
+                              });
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+            })
+        navigate(from, { replace: true })
     }
 
-    if (user) navigate(from, { replace: true });
+    // if (user) navigate(from, { replace: true });
 
     return (
         <div className="hero min-h-screen bg-base-200">
@@ -51,6 +76,12 @@ const SignUp = () => {
                             <label className="label">
                                 <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Photo URL {"(optional)"}</span>
+                            </label>
+                            <input type="text" name="photo" placeholder="Photo url" className="input input-bordered" />
                         </div>
                         <div className="form-control mt-6">
                             <button type='submit' className="btn btn-primary">Sign Up</button>

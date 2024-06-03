@@ -6,6 +6,8 @@ const Navbar = () => {
     const signOut = () => {
         logOut();
     }
+    
+   
     return (
         <>
             <div className="navbar bg-base-100">
