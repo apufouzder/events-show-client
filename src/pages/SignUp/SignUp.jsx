@@ -27,7 +27,7 @@ const SignUp = () => {
                 // console.log("user: ", result.user);
                 updateNameAndPhoto(result.user, name, photo)
                     .then(async () => {
-                        const res = await axios.post('http://localhost:5000/user', data)
+                        const res = await axios.post('https://event-show-server.vercel.app/user', data)
                         localStorage.setItem('token', res?.data?.token);
                         if (res.status === 200) { 
                             Swal.fire({

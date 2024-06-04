@@ -35,13 +35,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/events",
-        element: <AllEvents />,
-        loader: () => fetch('http://localhost:5000/event'),
+        element: <AllEvents />
       },
       {
         path: "/event/:id",
         element: <EventDetails />,
-        loader: ({ params }) => fetch(`http://localhost:5000/event/${params.id}`)
+        loader: ({ params }) => fetch(`https://event-show-server.vercel.app/event/${params.id}`)
       },
       {
         path: "/about",
@@ -72,7 +71,7 @@ const router = createBrowserRouter([
       {
         path: "edit/:id",
         element: <PrivateRoute><EditEvent /></PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/event/${params.id}`)
+        loader: ({ params }) => fetch(`https://event-show-server.vercel.app/event/${params.id}`)
       }
     ]
   }

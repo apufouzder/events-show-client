@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 
 const ManageEvents = () => {
     const [events, setEvents] = useState([]);
+    console.log(events);
 
     const handleDelete = async (id) => {
         const token = localStorage.getItem("token");
@@ -20,7 +21,7 @@ const ManageEvents = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    await fetch(`http://localhost:5000/event/${id}`, {
+                    await fetch(`https://event-show-server.vercel.app/event/${id}`, {
                         method: 'DELETE',
                         headers: { authorization: `Bearer ${token}` }
                     })
@@ -46,7 +47,7 @@ const ManageEvents = () => {
         });
     }
     useEffect(() => {
-        fetch('http://localhost:5000/event')
+        fetch('https://event-show-server.vercel.app/event')
             .then(res => res.json())
             .then(data => setEvents(data))
     }, [])
@@ -69,7 +70,7 @@ const ManageEvents = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {events.map(event => <>
+                        {events.length > 0 ? events.map(event => <>
                             <tr key={event._id}>
                                 <td>
                                     <div className="flex items-center gap-3">
@@ -94,7 +95,7 @@ const ManageEvents = () => {
                                     <button onClick={() => handleDelete(event._id)} className="btn btn-warning btn-xs">Delete</button>
                                 </th>
                             </tr>
-                        </>)}
+                        </>) : <span className="loading w-16 loading-spinner text-secondary"></span>}
                     </tbody>
                 </table>
             </div>

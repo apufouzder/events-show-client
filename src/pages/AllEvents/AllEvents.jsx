@@ -11,7 +11,7 @@ const AllEvents = () => {
     const [searchQuery, setSearchQuery] = useState("");
 
     const fetchEvents = async () => {
-        const res = await axios.get(`http://localhost:5000/event?search=${searchQuery}`);
+        const res = await axios.get(`https://event-show-server.vercel.app/event?search=${searchQuery}`);
         setEvents(res.data);
     };
 
@@ -32,7 +32,7 @@ const AllEvents = () => {
                 />
             </div>
             <div className="flex flex-col gap-4">
-                {events?.map(event => <>
+                {events.length > 0 ? events?.map(event => <>
                     <div key={event.name} className="rounded-lg mx-4 lg:mx-0 shadow-lg p-4 flex flex-col sm:flex-row items-center gap-14">
                         <div className="sm:w-[500px]">
                             <Link to={`/event/${event._id}`}><img className="w-full" src={event.photo} alt="Photo" /></Link>
@@ -48,7 +48,7 @@ const AllEvents = () => {
                         <p className="text-4xl font-bold text-purple-500">${event.fee}</p>
                     </div>
                 </>
-                )}
+                ): <span className="loading w-16 loading-spinner text-secondary"></span>}
             </div>
         </div>
     );

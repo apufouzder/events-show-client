@@ -1,8 +1,15 @@
-# React + Vite
+# Event Show Website
+### Live Site: ()
+## Features
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+##### - User create account with Email/Password, Google,.
+##### - User update profile & set new password.
+##### - Only login user event added, update and delete.
+##### - Search events in events page
+##### - Show single event details in dynamic route.
+##### - Include JWT token for secure api access.
+##### - Also store user information in database.
+##### - This site is responsive for all devices.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+#### - Thank you!

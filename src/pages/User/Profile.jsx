@@ -9,7 +9,7 @@ const Profile = () => {
     console.log(dbUser);
 
     async function getData() {
-        const res = await axios.get(`http://localhost:5000/user/${user?.email}`)
+        const res = await axios.get(`https://event-show-server.vercel.app/user/${user?.email}`)
         setDbUser(res.data)
     }
 
@@ -30,7 +30,7 @@ const Profile = () => {
 
         updateNameAndPhoto(user, name, image)
             .then(async () => {
-                const res = await axios.patch(`http://localhost:5000/user/${dbUser?._id}`, data,
+                const res = await axios.patch(`https://event-show-server.vercel.app/user/${dbUser?._id}`, data,
 
                     {
                         headers: { authorization: `Bearer ${token}` }

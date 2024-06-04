@@ -19,7 +19,7 @@ const AddEvent = () => {
         const photo = form.photo.value;
         const data = {name, description, photo, fee, type, location, date, contact, speaker}
 
-        const res = await axios.post('http://localhost:5000/event',
+        const res = await axios.post('https://event-show-server.vercel.app/event',
             data,
             {
                 headers: { authorization: `Bearer ${token}` }

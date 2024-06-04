@@ -25,7 +25,7 @@ const EditEvent = () => {
         const photo = form.photo.value;
         const pData = { name, description, photo, fee, type, location, date, contact, speaker }
 
-        const res = await axios.patch(`http://localhost:5000/event/${data?._id}`,
+        const res = await axios.patch(`https://event-show-server.vercel.app/event/${data?._id}`,
             pData,
             {
                 headers: { authorization: `Bearer ${token}` }

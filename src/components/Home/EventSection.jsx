@@ -7,7 +7,7 @@ const EventSection = () => {
     const [events, setEvents] = useState([]);
 
     async function getData() {
-        const res = await axios.get('http://localhost:5000/event')
+        const res = await axios.get('https://event-show-server.vercel.app/event')
         setEvents(res.data);
     }
     useEffect(() => {
