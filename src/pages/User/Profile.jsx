@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
 const Profile = () => {
-    const { user, userEmailUpdate, updateNameAndPhoto } = useAuth();
+    const { user, userEmailUpdate, updateNameAndPhoto, userPasswordUpdate } = useAuth();
     const [dbUser, setDbUser] = useState({});
     console.log(dbUser);
 
@@ -25,6 +25,7 @@ const Profile = () => {
         const name = form.name.value;
         const email = form.email.value;
         const image = form.image.value;
+        const password = form.password.value;
         const data = { displayName: name, email, photoUrl: image }
 
         updateNameAndPhoto(user, name, image)
@@ -39,7 +40,7 @@ const Profile = () => {
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
-                        title: "Create Successfully!",
+                        title: "Update Successfully!",
                         showConfirmButton: false,
                         timer: 1500
                     });
@@ -53,6 +54,10 @@ const Profile = () => {
         if (user?.email !== email) {
             userEmailUpdate(email)
         }
+
+        if (user?.email && password !== "") {
+            userPasswordUpdate(password)
+        }
     }
 
     return (
@@ -65,7 +70,7 @@ const Profile = () => {
                         <label className="label">
                             <span className="label-text">Name</span>
                         </label>
-                        <input type="text" name="name" defaultValue={user?.displayName} placeholder="Event name" className="input input-bordered" required />
+                        <input type="text" name="name" defaultValue={user?.displayName} placeholder="Event name" className="input input-bordered" />
                     </div>
                     <div className="form-control">
                         <label className="label">
@@ -78,6 +83,12 @@ const Profile = () => {
                             <span className="label-text">Image URL</span>
                         </label>
                         <input type="text" name="image" defaultValue={user?.photoURL ? user?.photoURL : dbUser?.photoUrl} placeholder="image url" className="input input-bordered" />
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Set new password!</span>
+                        </label>
+                        <input type="text" name="password" placeholder="new password" className="input input-bordered"  />
                     </div>
                     <div className="form-control mt-6">
                         <button type="submit" className="btn btn-primary">Submit</button>

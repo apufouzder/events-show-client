@@ -6,8 +6,8 @@ const EventDetails = () => {
     
     return (
         <>
-            <div className="container mx-auto py-20">
-                <img src={data?.photo} alt="Photo" />
+            <div className="container mx-4 md:mx-auto py-20">
+                <img className="w-full object-cover" src={data?.photo} alt="Photo" />
                 <div className="flex gap-4 mt-6">
                     <h3 className="text-xl font-semibold text-purple-800">Date: { data?.date}</h3>
                     <h3 className="text-xl font-semibold">Location: { data?.location}</h3>

@@ -33,8 +33,8 @@ const AllEvents = () => {
             </div>
             <div className="flex flex-col gap-4">
                 {events?.map(event => <>
-                    <div key={event.name} className="rounded-lg shadow-lg p-4 flex flex-col sm:flex-row items-center gap-14">
-                        <div className="w-[500px]">
+                    <div key={event.name} className="rounded-lg mx-4 lg:mx-0 shadow-lg p-4 flex flex-col sm:flex-row items-center gap-14">
+                        <div className="sm:w-[500px]">
                             <Link to={`/event/${event._id}`}><img className="w-full" src={event.photo} alt="Photo" /></Link>
                         </div>
                         <div className="flex flex-col justify-center">
@@ -45,7 +45,7 @@ const AllEvents = () => {
                             <p className="text-gray-500 text-xl font-medium mb-2">{event.contact}</p>
                             <p className="text-gray-500 text-xl font-medium">{event.location}</p>
                         </div>
-                        <p className="text-4xl font-bold text-purple-500">{event.fee}</p>
+                        <p className="text-4xl font-bold text-purple-500">${event.fee}</p>
                     </div>
                 </>
                 )}

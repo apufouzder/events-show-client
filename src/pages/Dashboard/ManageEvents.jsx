@@ -87,7 +87,7 @@ const ManageEvents = () => {
                                 <td>{event.location}</td>
                                 <td>{event.date}</td>
                                 <td>{event.contact}</td>
-                                <td>{event.fee}</td>
+                                <td>${event.fee}</td>
                                 <th className="flex gap-1">
                                     <Link to={`/event/${event._id}`}><button className="btn btn-accent btn-xs">details</button></Link>
                                     <Link to={`/dashboard/edit/${event._id}`}><button className="btn btn-info btn-xs">edit</button></Link>
