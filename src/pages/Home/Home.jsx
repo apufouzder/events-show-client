@@ -1,6 +1,7 @@
 import Banner from "../../components/Home/Banner";
 import EventFeature from "../../components/Home/EventFeature";
 import EventSection from "../../components/Home/EventSection";
+import News from "../../components/Home/News";
 
 
 const Home = () => {
@@ -9,6 +10,7 @@ const Home = () => {
             <Banner />
             <EventSection />
             <EventFeature />
+            <News />
         </>
     );
 };

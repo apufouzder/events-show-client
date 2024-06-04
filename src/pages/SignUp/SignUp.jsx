@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import GoogleLogin from '../../components/GoogleLogin';
 
 const SignUp = () => {
     const { createUser, updateNameAndPhoto } = useAuth();
@@ -94,6 +95,7 @@ const SignUp = () => {
                             </label>
                         </div>
                     </form>
+                    <GoogleLogin />
                 </div>
             </div>
         </div>

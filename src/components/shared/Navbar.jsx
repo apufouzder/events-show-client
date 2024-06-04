@@ -62,9 +62,14 @@ const Navbar = () => {
                                     <button onClick={signOut} className="btn btn-xs capitalize bg-purple-600 text-white border-0 hover:bg-purple-400">Log Out</button>
                                 </>
                                 :
-                                <Link to="/login">
-                                    <button className="btn text-xl capitalize bg-purple-600 text-white border-0 hover:bg-orange-400">Login</button>
-                                </Link>
+                                <div className="flex gap-2">
+                                    <Link to="/login">
+                                        <button className="btn btn-md text-xl capitalize bg-purple-700 text-white border-0 hover:bg-purple-900">Login</button>
+                                    </Link>
+                                    <Link to="/signup">
+                                        <button className="btn text-xl capitalize bg-purple-700 text-white border-0 hover:bg-purple-900">Sign Up</button>
+                                    </Link>
+                                </div>
                         }
                     </div>
                 </div>
