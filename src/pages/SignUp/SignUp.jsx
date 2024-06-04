@@ -28,6 +28,7 @@ const SignUp = () => {
                 updateNameAndPhoto(result.user, name, photo)
                     .then(async () => {
                         const res = await axios.post('http://localhost:5000/user', data)
+                        localStorage.setItem('token', res?.data?.token);
                         if (res.status === 200) { 
                             Swal.fire({
                                 position: "top-end",

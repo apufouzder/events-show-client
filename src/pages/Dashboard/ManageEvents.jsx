@@ -8,6 +8,7 @@ const ManageEvents = () => {
     const [events, setEvents] = useState([]);
 
     const handleDelete = async (id) => {
+        const token = localStorage.getItem("token");
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -21,6 +22,7 @@ const ManageEvents = () => {
                 try {
                     await fetch(`http://localhost:5000/event/${id}`, {
                         method: 'DELETE',
+                        headers: { authorization: `Bearer ${token}` }
                     })
                         .then(res => res.json())
                         .then(() => {

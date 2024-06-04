@@ -18,6 +18,7 @@ const Profile = () => {
     }, [])
 
     const handleSubmit = async (e) => {
+        const token = localStorage.getItem("token");
         e.preventDefault();
         const form = e.target;
 
@@ -28,7 +29,12 @@ const Profile = () => {
 
         updateNameAndPhoto(user, name, image)
             .then(async () => {
-                const res = await axios.patch(`http://localhost:5000/user/${dbUser?._id}`, data)
+                const res = await axios.patch(`http://localhost:5000/user/${dbUser?._id}`, data,
+
+                    {
+                        headers: { authorization: `Bearer ${token}` }
+                    }
+                )
                 if (res.status === 200) {
                     Swal.fire({
                         position: "top-end",

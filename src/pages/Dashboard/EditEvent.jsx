@@ -10,6 +10,7 @@ const EditEvent = () => {
     console.log(data);
 
     const handleSubmit = async (e) => {
+        const token = localStorage.getItem("token");
         e.preventDefault();
         const form = e.target;
 
@@ -22,18 +23,24 @@ const EditEvent = () => {
         const speaker = form.speaker.value;
         const description = form.description.value;
         const photo = form.photo.value;
-        const pData = {name, description, photo, fee, type, location, date, contact, speaker}
+        const pData = { name, description, photo, fee, type, location, date, contact, speaker }
 
-        const res = await axios.patch(`http://localhost:5000/event/${data?._id}`, pData)
+        const res = await axios.patch(`http://localhost:5000/event/${data?._id}`,
+            pData,
+            {
+                headers: { authorization: `Bearer ${token}` }
+            }
+        );
+
         console.log(res);
-        if (res.status === 200) { 
+        if (res.status === 200) {
             Swal.fire({
                 position: "top-end",
                 icon: "success",
                 title: "Updated Successfully!",
                 showConfirmButton: false,
                 timer: 1500
-              });
+            });
             navigate("/dashboard/manage");
         }
     }
@@ -42,7 +49,7 @@ const EditEvent = () => {
             <div className="shrink-0 w-1/2 shadow-2xl bg-base-100 my-8">
                 <h2 className="text-2xl text-center ">Update Event</h2>
                 <form onSubmit={handleSubmit} className="card-body">
-                    
+
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Name</span>

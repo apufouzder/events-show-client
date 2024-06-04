@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 const AddEvent = () => {
 
     const handleSubmit = async (e) => {
+        const token = localStorage.getItem("token");
         e.preventDefault();
         const form = e.target;
 
@@ -18,7 +19,12 @@ const AddEvent = () => {
         const photo = form.photo.value;
         const data = {name, description, photo, fee, type, location, date, contact, speaker}
 
-        const res = await axios.post('http://localhost:5000/event', data)
+        const res = await axios.post('http://localhost:5000/event',
+            data,
+            {
+                headers: { authorization: `Bearer ${token}` }
+            }
+        )
         if (res.status === 200) {
             Swal.fire({
                 position: "top-end",

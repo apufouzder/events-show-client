@@ -20,6 +20,7 @@ const GoogleLogin = () => {
                 if (result) {
                     const data = { displayName: result.user.displayName, email: result.user.email, photoUrl: result.user.photoURL };
                     const res = await axios.post('http://localhost:5000/user', data)
+                    localStorage.setItem('token', res?.data?.token);
                     if (res.status === 200) {
                         Swal.fire({
                             position: "top-end",
