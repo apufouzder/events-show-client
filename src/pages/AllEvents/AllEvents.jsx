@@ -1,14 +1,38 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 
 
 
 const AllEvents = () => {
-    const data = useLoaderData();
-console.log(data);    return (
+    // const data = useLoaderData();
+
+    const [events, setEvents] = useState([]);
+    const [searchQuery, setSearchQuery] = useState("");
+
+    const fetchEvents = async () => {
+        const res = await axios.get(`http://localhost:5000/event?search=${searchQuery}`);
+        setEvents(res.data);
+    };
+
+    useEffect(() => {
+        fetchEvents();
+
+    }, [searchQuery]);
+
+    return (
         <div className="container mx-auto py-14">
-           
+            <div className="mb-8">
+                <input
+                    type="text"
+                    placeholder="Search events..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full p-2 border rounded-lg"
+                />
+            </div>
             <div className="flex flex-col gap-4">
-                {data?.map(event => <>
+                {events?.map(event => <>
                     <div key={event.name} className="rounded-lg shadow-lg p-4 flex flex-col sm:flex-row items-center gap-14">
                         <div className="w-[500px]">
                             <Link to={`/event/${event._id}`}><img className="w-full" src={event.photo} alt="Photo" /></Link>

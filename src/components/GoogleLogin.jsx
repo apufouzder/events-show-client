@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import useAuth from "../hooks/useAuth";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { FcGoogle } from "react-icons/fc";
+
 
 const GoogleLogin = () => {
     const { googleLogin, user } = useAuth();
@@ -40,9 +42,12 @@ const GoogleLogin = () => {
     }, [user, from, navigate]);
 
     return (
-        <>
-            <button onClick={handleGoogleLogin} className="btn btn-secondary">Google Login</button>
-        </>
+        <div className="mx-auto mb-8">
+            <button onClick={handleGoogleLogin} className="btn capitalize border-gray-400 btn-outline hover:bg-transparent hover:text-inherit btn-ghost">
+                <FcGoogle className='mr-1 text-2xl' />
+                With Google
+            </button>
+        </div>
     );
 };
 
