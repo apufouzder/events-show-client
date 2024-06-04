@@ -64,10 +64,10 @@ const Navbar = () => {
                                 :
                                 <div className="flex gap-2">
                                     <Link to="/login">
-                                        <button className="btn btn-md text-xl capitalize bg-purple-700 text-white border-0 hover:bg-purple-900">Login</button>
+                                        <button className="btn btn-md capitalize bg-purple-700 text-white border-0 hover:bg-purple-900">Login</button>
                                     </Link>
                                     <Link to="/signup">
-                                        <button className="btn text-xl capitalize bg-purple-700 text-white border-0 hover:bg-purple-900">Sign Up</button>
+                                        <button className="btn capitalize bg-purple-700 text-white border-0 hover:bg-purple-900">Sign Up</button>
                                     </Link>
                                 </div>
                         }
